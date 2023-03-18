@@ -16,12 +16,14 @@ export function GradientBackground({ variant, className }) {
 
 export default function Layout({ children }) {
   const setAppTheme = () => {
-    const darkMode = localStorage.getItem('theme') === 'dark';
-    const lightMode = localStorage.getItem('theme') === 'light';
+    const theme = localStorage.getItem('theme');
 
-    if (darkMode) {
+    if (theme === null) {
       document.documentElement.classList.add('dark');
-    } else if (lightMode) {
+      localStorage.setItem('theme', 'dark');
+    } else if (theme === 'dark') {
+      document.documentElement.classList.add('dark');
+    } else if (theme === 'light') {
       document.documentElement.classList.remove('dark');
     }
     return;
